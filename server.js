@@ -167,7 +167,10 @@ app.post("/startTender", async function(req,res){
         console.log(err);
         res.send("Error!");
     });
-}
+    }
+    else{
+        res.send("Error!");
+    }
 })
 
 //Route to get winner
