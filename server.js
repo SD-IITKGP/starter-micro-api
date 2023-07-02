@@ -148,7 +148,7 @@ app.post("/register", async function(req,res){
 //Route to start a tender process by admin
 
 app.post("/startTender", async function(req,res){
-    if(req.isAuthenticated()){
+    // if(req.isAuthenticated()){
     await web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY);
     await myContract.methods.startTendor("0x"+hexEncode(req.body.TenderName), req.body.TenderId, req.body.openTime).send({from: process.env.NOOBSWALLET.toLowerCase(), gas:process.env.GAS})
     .then(receipt=>{
@@ -167,10 +167,10 @@ app.post("/startTender", async function(req,res){
         console.log(err);
         res.send("Error!");
     });
-    }
-    else{
-        res.send("Error!");
-    }
+    // }
+    // else{
+    //     res.send("Error!");
+    // }
 })
 
 //Route to get winner
