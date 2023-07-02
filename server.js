@@ -25,8 +25,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
-    credentials: true,
-    origin: process.env.REACT_URL
+    credentials: true
 }));
 app.use(bodyParser.urlencoded({
 extended: true
