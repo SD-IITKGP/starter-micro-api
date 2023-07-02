@@ -113,8 +113,6 @@ function hexEncode(company){
 
   //Route for registration of a company
 app.post("/register", async function(req,res){
-    res.header("Access-Control-Allow-Origin", process.env.REACT_URL);
-    console.log("In");
     await web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY);
     console.log(req.body.din.toString());
     await myContract.methods.register("0x"+hexEncode(req.body.company), "0x"+hexEncode(req.body.din.toString()), req.body.bid, req.body.address.toLowerCase()).send({from: process.env.NOOBSWALLET.toLowerCase(),gas:process.env.GAS})
@@ -176,8 +174,6 @@ app.post("/startTender", async function(req,res){
 //Route to get winner
 
 app.get("/getWinner", async function(req,res){
-    res.header("Access-Control-Allow-Origin", process.env.REACT_URL);
-    console.log("In");
     await myContract.methods.getTenderDetails().call()
     .then(receipt=>{
         console.log(Number(receipt[Object.keys(receipt)[0]]));
